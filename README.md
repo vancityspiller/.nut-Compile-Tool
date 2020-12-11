@@ -24,6 +24,7 @@ However, there is no error handling on client side.
 ## Notes
 
 - Only .nut files are taken into account, so you can even place entire server folder at once as long as you don't replace server.cfg.
+- Previous files are deleted whenever compilation begins.
 - Do not put spaces in your client script names.
 - [fart-it](https://github.com/lionello/fart-it) was used in the batchfiles 
 
