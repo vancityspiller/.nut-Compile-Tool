@@ -29,4 +29,4 @@ However, there is no error handling on client side.
 - Do not put spaces in your client script names.
 - [fart-it](https://github.com/lionello/fart-it) was used in the batchfiles 
 
-Download the tool from [here](https://github.com/vancityspiller/Compiler/releases/tag/v.1.1).
+Download the tool from [here](https://github.com/vancityspiller/.nut-Compile-Tool/releases/tag/v1.1).
