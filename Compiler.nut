@@ -26,7 +26,9 @@ local   Data =      "",
         
         Compiling = true,
         Success =   0,
-        Errored =   [];
+        Errored =   [],
+        
+        Extension = "";
 
 // ------------------------------------------------------- //
 
@@ -48,6 +50,13 @@ function Read()
     Data += format("%c", Blob_.readn('b'));
 
     Reader.close();
+
+    local extReader = file("extension.ini", "rb");
+    local Blob_ = extReader.readblob(extReader.len());
+
+    for(local i = 0 ; i < extReader.len() ; i++)
+    Extension += format("%c", Blob_.readn('b'));
+
     return 1;
 }
 
@@ -96,7 +105,8 @@ function CompileFiles()
 
         try 
         {
-            Compile(Lines[i], Replace(Lines[i], ".nut", ".cnut"));
+            local script = Extension == ".nut" ? Lines[i] : Replace(Lines[i], ".nut", Extension);
+            Compile(Lines[i], script);
             Success++;
         }
         catch(_) 
@@ -151,7 +161,9 @@ function LogError(scriptPath)
 {
     print(format("\nFile (%s)\n", scriptPath));
     Write("error.txt", format("File (%s)\n", scriptPath), true);
-    Compile(scriptPath, Replace(scriptPath, ".nut", ".cnut"));
+
+    local script = Extension == ".nut" ? scriptPath : Replace(scriptPath, ".nut", Extension);
+    Compile(scriptPath, script);
 }
 
 // Replace extension //
