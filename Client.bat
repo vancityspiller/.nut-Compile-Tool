@@ -1,3 +1,4 @@
+rmdir /Q /S Compiled
 dir /s /b *.nut >> data.dat
 
 copy data.dat compile.dat
@@ -22,8 +23,11 @@ for /F %%b in (compile.dat) do (
 )
 set m=%j%
 
+robocopy .\ Compiled /e /xf * >nul
+rmdir /Q /S "Compiled/Compiled"
+
 for /l %%x in (1, 1, %n%) do (
-	sq -c -o !array2[%%x]! !array[%%x]!
+	sq -c -o Compiled\!array2[%%x]! !array[%%x]!
 )
 
 del compile.dat
