@@ -1,8 +1,10 @@
 rmdir /Q /S Compiled
 dir /s /b *.nut >> data.dat
 
+set /p Ext=<extension.ini
+
 copy data.dat compile.dat
-fart -q "compile.dat" ".nut" ".cnut"
+fart -q "compile.dat" ".nut" %Ext%
 
 fart --remove "data.dat" "%cd%\\"
 fart -c --remove "compile.dat" "%cd%\\"
